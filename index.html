@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Deck Vault — TCG collection & deck builder</title>
+  <meta name="description" content="Scan your Pokémon, Magic and Yu-Gi-Oh! cards into one collection, build decks with EDHREC suggestions, and buy what's missing.">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#14161c">
+  <link rel="icon" href="assets/icons/icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <!-- Tiny game tabs sit ABOVE the main header: Pokémon / Magic / Yu-Gi-Oh! -->
+  <div id="game-tabs" class="game-tabs" role="tablist" aria-label="Game"></div>
+
+  <header class="site-header">
+    <h1>Deck Vault</h1>
+    <p class="subtitle">Scan your cards. Build decks. Buy what’s missing.</p>
+    <p id="game-source-note" class="source-note"></p>
+  </header>
+
+  <nav id="main-nav" class="main-nav" aria-label="Main"></nav>
+
+  <main>
+    <!-- ============ COLLECTION ============ -->
+    <section id="view-collection" aria-label="Collection">
+      <div class="toolbar">
+        <input id="card-search" class="search" placeholder="Search cards…" autocomplete="off">
+        <button id="btn-scan" class="btn">◉ Scan</button>
+        <button id="btn-export" class="btn ghost">Export</button>
+        <label class="btn ghost file-label">Import
+          <input type="file" id="import-file" accept=".json,application/json" hidden>
+        </label>
+      </div>
+      <div id="search-results" class="results-grid"></div>
+
+      <h2>Your collection <span id="collection-count" class="muted small"></span></h2>
+      <div id="collection-grid" class="results-grid"></div>
+    </section>
+
+    <!-- ============ DECK BUILDER ============ -->
+    <section id="view-decks" aria-label="Deck Builder" hidden>
+      <div class="decks-layout">
+        <aside class="deck-sidebar">
+          <button id="btn-new-deck" class="btn wide">+ New deck</button>
+          <div id="deck-list"></div>
+        </aside>
+        <div id="deck-detail" class="deck-detail"></div>
+      </div>
+    </section>
+
+    <!-- ============ BUY LIST ============ -->
+    <section id="view-buylist" aria-label="Buy List" hidden>
+      <h2>Buy list <span id="buylist-count" class="muted small"></span></h2>
+      <p class="muted small">Cards your decks need that aren’t in your collection. Links open the store’s search for that card.</p>
+      <div id="buylist-items"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span class="muted small">Deck Vault · your data never leaves this browser · card data: Scryfall, TCGdex, YGOPRODeck, EDHREC</span>
+  </footer>
+
+  <div id="modal-root"></div>
+  <div id="toast-root" aria-live="polite"></div>
+
+  <script src="js/config.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/collection.js"></script>
+  <script src="js/deckbuilder.js"></script>
+  <script src="js/buylist.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
